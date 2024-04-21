@@ -1,12 +1,12 @@
 import { useState } from "react";
+import PlanDay from "./components/PlanDay";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <div>
-
+      <PlanDay/>
     </div>
   );
 }
