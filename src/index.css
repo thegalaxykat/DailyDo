@@ -84,10 +84,6 @@ h2 {
   padding-bottom: 8px;
 }
 
-.checkbox {
-  margin-right: 10px;
-}
-
 /* Animate strike through */
 .strike-through {
   position: relative;
@@ -111,3 +107,5 @@ h2 {
 .strike-through.checked::after {
   width: 100%;
 }
+
+
