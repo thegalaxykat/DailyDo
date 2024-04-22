@@ -2,7 +2,9 @@
 /* https://twitter.com/avstorm */
 
 :root {
-    --primary-color: #27A8C2;
+    --primary-color: #8d8d8d;
+    --splash-color: #27A8C2;
+    /* --splash-color: #27c25d; */
     --border-color: #bfbfc0;
     --stroke-color: #fff;
   }
@@ -85,7 +87,7 @@
   }
   
   .checkbox-wrapper-12 .cbx input:checked + label {
-    animation: splash-12 0.6s ease forwards;
+    animation: splash-12 1.2s ease forwards;
   }
   
   .checkbox-wrapper-12 .cbx input:checked + label + svg path {
@@ -94,8 +96,8 @@
   
   @keyframes splash-12 {
     40% {
-      background: var(--primary-color);
-      box-shadow: 0 -18px 0 -8px var(--primary-color), 16px -8px 0 -8px var(--primary-color), 16px 8px 0 -8px var(--primary-color), 0 18px 0 -8px var(--primary-color), -16px 8px 0 -8px var(--primary-color), -16px -8px 0 -8px var(--primary-color);
+      background: var(--splash-color);
+      box-shadow: 0 -18px 0 -8px var(--splash-color), 16px -8px 0 -8px var(--splash-color), 16px 8px 0 -8px var(--splash-color), 0 18px 0 -8px var(--splash-color), -16px 8px 0 -8px var(--splash-color), -16px -8px 0 -8px var(--splash-color);
     }
     100% {
       background: var(--primary-color);
