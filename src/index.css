@@ -80,8 +80,9 @@ h2 {
 /* task div */
 .task {
   display: flex;
+  align-items: center;
   user-select: none;
-  padding-bottom: 8px;
+  padding-bottom: 12px;
 }
 
 /* Animate strike through */
