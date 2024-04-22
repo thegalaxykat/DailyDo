@@ -79,13 +79,10 @@ h2 {
 
 /* task div */
 .task {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   user-select: none;
-  padding-bottom: 8px;
-}
-
-.checkbox {
-  margin-right: 10px;
+  padding-bottom: 12px;
 }
 
 /* Animate strike through */
@@ -111,3 +108,5 @@ h2 {
 .strike-through.checked::after {
   width: 100%;
 }
+
+

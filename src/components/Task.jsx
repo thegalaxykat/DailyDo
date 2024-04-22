@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Checkbox from "./Checkbox";
 
 function Task({ description }) {
   const [isChecked, setIsChecked] = useState(false);
@@ -11,13 +12,7 @@ function Task({ description }) {
   return (
     <div> {/* this extra div forces it to take the whole line */}
       <div onClick={handleClick} className="task">
-        {/* TODO add a custom checkbox with animation */}
-        <input
-          type="checkbox"
-          checked={isChecked}
-          readOnly
-          className="checkbox"
-        />
+        <Checkbox checked={isChecked} />
         <label className={`strike-through ${isChecked ? "checked" : ""}`}>
           {description}
         </label>

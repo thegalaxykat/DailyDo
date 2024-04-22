@@ -1,0 +1,106 @@
+/* Animations adapted from Andreas Storm */
+/* https://twitter.com/avstorm */
+
+:root {
+    --primary-color: #8d8d8d;
+    --splash-color: #27A8C2;
+    /* --splash-color: #27c25d; */
+    --border-color: #bfbfc0;
+    --stroke-color: #fff;
+  }
+  
+  .checkbox-wrapper-12 {
+    position: relative;
+  }
+  
+  .checkbox-wrapper-12 > svg {
+    position: absolute;
+    top: -130%;
+    width: 110px;
+    pointer-events: none;
+  }
+
+  
+  .checkbox-wrapper-12 input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  .checkbox-wrapper-12 input[type="checkbox"]:focus {
+    outline: 0;
+  }
+  
+  .checkbox-wrapper-12 .cbx {
+    width: 18px;
+    height: 18px;
+    top: calc(50vh - 9px);
+    left: calc(50vw - 9px);
+    margin-right: 10px;
+  }
+  
+  .checkbox-wrapper-12 .cbx input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+  }
+  
+  .checkbox-wrapper-12 .cbx label {
+    width: 18px;
+    height: 18px;
+    background: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-filter: url("#goo-12");
+    filter: url("#goo-12");
+    transform: trasnlate3d(0, 0, 0);
+    pointer-events: none;
+  }
+  
+  .checkbox-wrapper-12 .cbx svg {
+    position: absolute;
+    top: 1px;
+    left: 3.25px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  /* check mark */
+  .checkbox-wrapper-12 .cbx svg path {
+    stroke: var(--stroke-color);
+    stroke-width: 2.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 14.25;
+    stroke-dashoffset: 14.25;
+    transition: stroke-dashoffset 0.25s ease;
+    transition-delay: 0s;
+  }
+  
+  .checkbox-wrapper-12 .cbx input:checked + label {
+    animation: splash-12 1.2s ease forwards;
+  }
+  
+  .checkbox-wrapper-12 .cbx input:checked + label + svg path {
+    stroke-dashoffset: 0;
+  }
+  
+  @keyframes splash-12 {
+    40% {
+      background: var(--splash-color);
+      box-shadow: 0 -18px 0 -8px var(--splash-color), 16px -8px 0 -8px var(--splash-color), 16px 8px 0 -8px var(--splash-color), 0 18px 0 -8px var(--splash-color), -16px 8px 0 -8px var(--splash-color), -16px -8px 0 -8px var(--splash-color);
+    }
+    100% {
+      background: var(--primary-color);
+      box-shadow: 0 -27px 0 -7.5px transparent, 24px -12px 0 -7.5px transparent, 24px 12px 0 -7.5px transparent, 0 27px 0 -7.5px transparent, -24px 12px 0 -7.5px transparent, -24px -12px 0 -7.5px transparent;
+    }
+  }
