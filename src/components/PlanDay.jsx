@@ -1,6 +1,5 @@
 import { useState } from "react";
-import "../App.css";
-import Task from "./Task";
+import TaskGroup from "./TaskGroup";
 
 function PlanDay() {
   const date = new Date();
@@ -8,15 +7,10 @@ function PlanDay() {
   const dateString = date.toLocaleDateString("en-US", options);
 
   return (
-    <div>
-      <h1>Today is {dateString}</h1>
-      <h2>I Will</h2>
-      <Task description={"Start this project"}/>
-      <Task description={"Write some more example tasks"}/>
-      <h2>I Might</h2>
-      <Task description={"Eat an apple"}/>
-      <Task description={"Watch Star Wars"}/>
-      <Task description={"Name a fish Bert"}/>
+    <div className="block">
+        <h1>Today is {dateString}</h1>
+        <TaskGroup title={"I Will"} tasks={["Start this project", "Write more example tasks"]}/>
+        <TaskGroup title={"I Might"} tasks={["Eat an apple", "Watch Star Wars", "Name a fish Bert"]}/>
     </div>
   );
 }
