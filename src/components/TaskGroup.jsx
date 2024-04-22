@@ -1,6 +1,12 @@
-import Task from "./Task";
+import Task from "./task";
 import { useState } from "react";
 
+/**
+ * TaskGroup component that displays a group of tasks
+ *
+ * @param title - the title of the task group to be displayed
+ * @param tasks - an array of tasks to be displayed
+ */
 function TaskGroup({ title, tasks }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -14,6 +20,7 @@ function TaskGroup({ title, tasks }) {
 
   const handleEdit = () => {
     console.log("Edit tasks");
+    // TODO: Implement adding tasks
   };
 
   return (

@@ -7,6 +7,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --strike-though-color: #b4b3b5;
 }
 
 a {
@@ -34,29 +35,26 @@ body {
 h1 {
   font-size: 2.5em;
   line-height: 1.1;
+  margin-bottom: 35px;
 }
 
 h2 {
-  margin-bottom: .25em;
+  margin-top: .15em;
+  margin-bottom: .35em;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  /* background-color: #1a1a1a; */
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-.task {
-  user-select: none;
+.block {
+  background-color: white;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;; */
 }
 
 .task-group {
+  margin-bottom: 24px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .task-group-head {
@@ -65,8 +63,8 @@ button {
 }
 
 .edit-icon {
-  margin-left: 13px;
-  margin-top: 15px;
+  margin-left: 8px;
+  margin-top: -4px;
   opacity: 50%;
   border-radius: 5px;
   width: 18px;
@@ -79,7 +77,37 @@ button {
   transform: scale(1.1);
 }
 
-.block {
-  background-color: white;
+/* task div */
+.task {
+  display: inline-block;
+  user-select: none;
+  padding-bottom: 8px;
 }
 
+.checkbox {
+  margin-right: 10px;
+}
+
+/* Animate strike through */
+.strike-through {
+  position: relative;
+}
+
+.strike-through.checked {
+  color: var(--strike-though-color);
+}
+
+.strike-through::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--strike-though-color);
+  transition: width 0.2s linear;
+}
+
+.strike-through.checked::after {
+  width: 100%;
+}
