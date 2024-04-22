@@ -6,7 +6,7 @@ function Checkbox({ checked }) {
         <div className="cbx">
           <input id="cbx-12" type="checkbox" />
           <label htmlFor="cbx-12"></label>
-          <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+          <svg width="10" height="12" viewBox="0 0 12 11" fill="none">
             <path d="M2 8.36364L6.23077 12L13 2"></path>
           </svg>
         </div>
