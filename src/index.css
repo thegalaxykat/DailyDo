@@ -79,7 +79,7 @@ h2 {
 
 /* task div */
 .task {
-  display: inline-block;
+  display: flex;
   user-select: none;
   padding-bottom: 8px;
 }

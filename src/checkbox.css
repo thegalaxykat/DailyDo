@@ -37,6 +37,7 @@
     height: 24px;
     top: calc(50vh - 12px);
     left: calc(50vw - 12px);
+    margin-right: 10px;
   }
   
   .checkbox-wrapper-12 .cbx input {

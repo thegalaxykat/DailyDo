@@ -13,11 +13,6 @@ function Task({ description }) {
     <div> {/* this extra div forces it to take the whole line */}
       <div onClick={handleClick} className="task">
         <Checkbox checked={isChecked} />
-        {/* <input
-          type="checkbox"
-          checked={isChecked}
-          readOnly
-        /> */}
         <label className={`strike-through ${isChecked ? "checked" : ""}`}>
           {description}
         </label>
