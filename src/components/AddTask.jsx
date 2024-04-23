@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-function AddTask({ add, close }) {
+/**
+ * popup that allows the user to add a task
+ *
+ * @param add - a function that adds a new task
+ * @param close - a function that closes the popup
+ */
+function AddTask({ add, close, prompt = "Add a task" }) {
   const [task, setTask] = useState("");
 
   const handleSubmit = (evt) => {
@@ -16,15 +22,18 @@ function AddTask({ add, close }) {
 
   return (
     <div>
-      <form className="add-task" onSubmit={handleSubmit}>
-        <input
-          value={task}
-          type="text"
-          placeholder="Add a task"
-          onChange={handleChange}
-        />
-        <button type="submit">Add</button>
-      </form>
+      <div className="popup">
+        <button onClick={close} className="icon-button"><img src="/x.svg" /></button>
+        <form className="add-task" onSubmit={handleSubmit}>
+          <input
+            value={task}
+            type="text"
+            placeholder={prompt + "..."}
+            onChange={handleChange}
+          />
+          <button type="submit" className="icon-button"><img src="/plus-square.svg" /></button>
+        </form>
+      </div>
       <div className="shade" onClick={close}></div>
     </div>
   );

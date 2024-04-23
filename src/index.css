@@ -41,7 +41,10 @@ h1 {
 h2 {
   margin-top: .15em;
   margin-bottom: .35em;
+  cursor: default;
+  user-select: none;
 }
+
 
 .block {
   background-color: white;
@@ -63,18 +66,29 @@ h2 {
 }
 
 .edit-icon {
-  margin-left: 8px;
   margin-top: -4px;
   opacity: 50%;
   border-radius: 5px;
   width: 18px;
   cursor: pointer;
   padding: 3px;
+  padding-left: 11px;
 }
 
 .edit-icon:hover {
   opacity: 85%;
   transform: scale(1.1);
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  opacity: 85%;
+  cursor: pointer;
 }
 
 /* task div */
@@ -119,10 +133,7 @@ h2 {
   z-index: 999;
 }
 
-.add-task {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.popup {
   padding: 10px;
   border-radius: 5px;
   background-color: white;
@@ -130,8 +141,30 @@ h2 {
 
   /* middle of screen */
   position: fixed;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000; /* above overlay mask */
+
+  min-height: 100px;
+
+}
+
+.add-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 426px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 12px;
+}
+
+.add-task input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
 }

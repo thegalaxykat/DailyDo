@@ -4,8 +4,8 @@ import Checkbox from "./Checkbox";
 function Task({ description }) {
   const [isChecked, setIsChecked] = useState(false);
 
+  // using this instead of just OnClick for the checkbox so that you can click the label too
   const handleClick = () => {
-    console.log("Task clicked");
     setIsChecked(!isChecked);
   };
 

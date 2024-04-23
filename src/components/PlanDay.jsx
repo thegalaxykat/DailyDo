@@ -19,8 +19,8 @@ function PlanDay() {
   return (
     <div className="block">
       <h1>Today is {dateString}</h1>
-      <TaskGroup title={"I Will"} tasks={willTasks} />
-      <TaskGroup title={"I Might"} tasks={mightTasks} />
+      <TaskGroup type={"I Will"} tasks={willTasks} />
+      <TaskGroup type={"I Might"} tasks={mightTasks}/>
     </div>
   );
 }

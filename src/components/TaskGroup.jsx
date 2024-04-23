@@ -8,7 +8,7 @@ import AddTask from "./AddTask";
  * @param title - the title of the task group to be displayed
  * @param tasks - an array of tasks to be displayed
  */
-function TaskGroup({ title, tasks }) {
+function TaskGroup({ type, tasks }) {
   const [isHovered, setIsHovered] = useState(false);
   const [AddingTask, setAddingTask] = useState(false);
 
@@ -31,7 +31,7 @@ function TaskGroup({ title, tasks }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="task-group-head">
-        <h2>{title}</h2>
+        <h2 onClick={() => setAddingTask(true)}>{type}</h2>
         {isHovered && (
           <img
             src="/edit.svg"
@@ -44,7 +44,7 @@ function TaskGroup({ title, tasks }) {
       {tasks.map((task, index) => (
         <Task key={index} description={task} />
       ))}
-      {AddingTask && <AddTask add={addNewTask} close={closeAddTask} />}
+      {AddingTask && <AddTask add={addNewTask} close={closeAddTask} prompt={type} />}
     </div>
   );
 }
