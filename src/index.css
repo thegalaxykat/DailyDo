@@ -157,14 +157,15 @@ h2 {
   min-width: 426px;
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 12px;
+  margin: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .add-task input[type="text"] {
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
   font-size: 16px;
   width: 100%;
   outline: none;
+  border:none;
 }
