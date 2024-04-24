@@ -80,6 +80,22 @@ h2 {
   transform: scale(1.1);
 }
 
+.delete-icon {
+  margin-top: -9px;
+  opacity: 40%;
+  border-radius: 5px;
+  width: 12px;
+  cursor: pointer;
+  padding: 2px;
+  margin-left: 5px;
+}
+
+.delete-icon:hover {
+  opacity: 85%;
+  transform: scale(1.1);
+  /* TODO make red */
+}
+
 .icon-button {
   background: none;
   border: none;
@@ -168,4 +184,8 @@ h2 {
   width: 100%;
   outline: none;
   border:none;
+}
+
+.flexbox {
+  display: flex;
 }
