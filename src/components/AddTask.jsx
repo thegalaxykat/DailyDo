@@ -26,6 +26,7 @@ function AddTask({ add, close, prompt = "Add a task" }) {
         <button onClick={close} className="icon-button"><img src="/x.svg" /></button>
         <form className="add-task" onSubmit={handleSubmit}>
           <input
+            autoFocus
             value={task}
             type="text"
             placeholder={prompt + "..."}

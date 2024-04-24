@@ -12,16 +12,25 @@ function TaskGroup({ type, tasks }) {
   const [isHovered, setIsHovered] = useState(false);
   const [AddingTask, setAddingTask] = useState(false);
 
+  const [temp, setTemp] = useState(false); // see line 32
+
   const closeAddTask = () => {
     setIsHovered(false);
     setAddingTask(false);
   };
 
   const addNewTask = (newTask) => {
+    // technically this should be a POST request to a database but I'm just using a temporary array
     if (newTask !== "") {
       tasks.push(newTask);
       setAddingTask(false);
     }
+  };
+
+  const deleteTask = (id) => {
+    tasks.splice(id, 1);
+    // this is a hacky way to force a re-render but it's temporary since soon I'll be moving all of this to a database
+    setTemp(!temp);
   };
 
   return (
@@ -42,9 +51,16 @@ function TaskGroup({ type, tasks }) {
         )}
       </div>
       {tasks.map((task, index) => (
-        <Task key={index} description={task} />
+        <Task
+          key={index}
+          id={index}
+          description={task}
+          deleteTask={deleteTask}
+        />
       ))}
-      {AddingTask && <AddTask add={addNewTask} close={closeAddTask} prompt={type} />}
+      {AddingTask && (
+        <AddTask add={addNewTask} close={closeAddTask} prompt={type} />
+      )}
     </div>
   );
 }
