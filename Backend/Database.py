@@ -54,9 +54,6 @@ class TaskDatabase:
             example_tasks,
         )
 
-        self.conn.commit()
-        self.conn.close()
-
 
 # Reminder that conn is the connection to the db and cursor is a pointer to the
 # db. The cursor is used to execute sql commands and changes must be committed
