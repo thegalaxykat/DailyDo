@@ -40,11 +40,9 @@ class TaskDatabase:
 
     def create_database(self):
         """
-        Create the tasks table if it doesn't exist and add some example tasks
+        Create the tasks table and add some example tasks
         """
         try:
-            self.cursor.execute("SELECT * FROM tasks")
-        except sqlite3.OperationalError:
             self.cursor.execute(
                 "CREATE TABLE tasks (id INTEGER PRIMARY KEY, task TEXT, complete INTEGER, today TEXT)"
             )
@@ -57,6 +55,8 @@ class TaskDatabase:
                 "INSERT INTO tasks (task, complete, today) VALUES (?, ?, ?)",
                 example_tasks,
             )
+        except Exception as e:
+            print(e)
 
 
 # Reminder that conn is the connection to the db and cursor is a pointer to the

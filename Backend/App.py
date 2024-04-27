@@ -1,11 +1,13 @@
 from flask import Flask, send_from_directory, request, redirect
 from Database import TaskDatabase as task_db
+import os
 
 app = Flask(__name__, static_folder=None)
 
 # Create the tasks table if it doesn't exist
-with task_db() as db:
-    db.create_database()
+if not os.path.exists("Backend/database.db"):
+    with task_db() as db:
+        db.create_database()
 
 BUILD_FOLDER = "../Frontend/build"
 
