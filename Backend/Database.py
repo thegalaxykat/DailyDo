@@ -1,6 +1,6 @@
 import sqlite3
 
-DATABASE = "database.db"
+DATABASE = "Backend/database.db"
 
 
 class TaskDatabase:
@@ -10,7 +10,7 @@ class TaskDatabase:
         self.cursor = None
 
     def __enter__(self):
-        self.conn = sqlite3.connect(DATABASE)
+        self.conn = sqlite3.connect(DATABASE)  # note: creates if doesn't exist
         self.cursor = self.conn.cursor()
         return self
 
@@ -34,25 +34,23 @@ class TaskDatabase:
 
     def create_database(self):
         """
-        Create the database if it doesn't exist and add some example tasks
+        Create the tasks table if it doesn't exist and add some example tasks
         """
         try:
+            self.cursor.execute("SELECT * FROM tasks")
+        except sqlite3.OperationalError:
             self.cursor.execute(
                 "CREATE TABLE tasks (id INTEGER PRIMARY KEY, task TEXT, status TEXT, today TEXT)"
             )
-        except Exception as e:
-            print("table already exists")
-
-        example_tasks = [
-            ("This is a task you'll definitely do today", "Not Started", "I Will"),
-            ("This is a task you *might* do today", "Not Started", "I Might"),
-            ("Finished tasks are checked off", "Done", "I Might"),
-        ]
-
-        self.cursor.executemany(
-            "INSERT INTO tasks (task, status, today) VALUES (?, ?, ?)",
-            example_tasks,
-        )
+            example_tasks = [
+                ("This is a task you'll definitely do today", "Not Started", "I Will"),
+                ("This is a task you *might* do today", "Not Started", "I Might"),
+                ("Finished tasks are checked off", "Done", "I Might"),
+            ]
+            self.cursor.executemany(
+                "INSERT INTO tasks (task, status, today) VALUES (?, ?, ?)",
+                example_tasks,
+            )
 
 
 # Reminder that conn is the connection to the db and cursor is a pointer to the

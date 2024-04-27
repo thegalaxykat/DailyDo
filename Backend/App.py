@@ -1,10 +1,13 @@
 from flask import Flask, send_from_directory, request, redirect
-import os
 from Database import TaskDatabase as task_db
 
 app = Flask(__name__, static_folder=None)
 
-BUILD_FOLDER = "React_Front_End/build"
+# Create the tasks table if it doesn't exist
+with task_db() as db:
+    db.create_database()
+
+BUILD_FOLDER = "../Frontend/build"
 
 
 @app.route("/")
@@ -20,7 +23,7 @@ def serveFile(p):
         return ("File not found", 404) # classic
 
 
-@app.route("/get-tasks")
+@app.route("/get-tasks", methods=["GET"])
 def get_tasks():
     with task_db() as db:
         try:
