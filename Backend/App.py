@@ -42,6 +42,16 @@ def add_task():
             return "", 204 # means successful action with no content
         except Exception as e:
             return str(e), 400 # bad request
+        
+@app.route("/update-completed", methods=["POST"])
+def update_completed():
+    body = request.json
+    with task_db() as db:
+        try:
+            db.update_completed(body["id"], body["complete"])
+            return "", 204
+        except Exception as e:
+            return str(e), 400
 
 
 @app.route("/delete-task", methods=["POST"])

@@ -21,13 +21,19 @@ class TaskDatabase:
     def get_tasks(self):
         self.cursor.execute("SELECT * FROM tasks")
         rows = self.cursor.fetchall()  # return results of query as tuples
-        return [dict(id=r[0], task=r[1], status=r[2], today=r[3]) for r in rows]
+        return [dict(id=r[0], task=r[1], complete=r[2], today=r[3]) for r in rows]
 
     def add_task(self, task, today):
         self.cursor.execute(
-            "INSERT INTO tasks (task, status, today) VALUES (?, ?, ?)",
-            [task, "Not Started", today],
+            "INSERT INTO tasks (task, complete, today) VALUES (?, ?, ?)",
+            [task, 0, today],
         )
+
+    def update_completed(self, id, complete):
+        self.cursor.execute("UPDATE tasks SET complete=? WHERE id=?", [complete, id])
+
+    def update_today(self, id, today):
+        self.cursor.execute("UPDATE tasks SET today=? WHERE id=?", [today, id])
 
     def delete_task(self, id):
         self.cursor.execute("DELETE FROM tasks WHERE id=?", [id])
@@ -40,15 +46,15 @@ class TaskDatabase:
             self.cursor.execute("SELECT * FROM tasks")
         except sqlite3.OperationalError:
             self.cursor.execute(
-                "CREATE TABLE tasks (id INTEGER PRIMARY KEY, task TEXT, status TEXT, today TEXT)"
+                "CREATE TABLE tasks (id INTEGER PRIMARY KEY, task TEXT, complete INTEGER, today TEXT)"
             )
             example_tasks = [
-                ("This is a task you'll definitely do today", "Not Started", "I Will"),
-                ("This is a task you *might* do today", "Not Started", "I Might"),
-                ("Finished tasks are checked off", "Done", "I Might"),
+                ("This is a task you'll definitely do today", 0, "I Will"),
+                ("This is a task you *might* do today", 0, "I Might"),
+                ("Finished tasks are checked off", 1, "I Might"),
             ]
             self.cursor.executemany(
-                "INSERT INTO tasks (task, status, today) VALUES (?, ?, ?)",
+                "INSERT INTO tasks (task, complete, today) VALUES (?, ?, ?)",
                 example_tasks,
             )
 
