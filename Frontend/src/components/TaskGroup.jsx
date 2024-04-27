@@ -5,32 +5,48 @@ import AddTask from "./AddTask";
 /**
  * TaskGroup component that displays a group of tasks
  *
- * @param title - the title of the task group to be displayed
- * @param tasks - an array of tasks to be displayed
+ * @param type - the title of the task group to be displayed
+ * @param tasks - an array of tasks objects to be displayed
  */
-function TaskGroup({ type, tasks }) {
+function TaskGroup({ type, tasks, update }) {
   const [isHovered, setIsHovered] = useState(false);
   const [AddingTask, setAddingTask] = useState(false);
-
-  const [temp, setTemp] = useState(false); // see line 32
 
   const closeAddTask = () => {
     setIsHovered(false);
     setAddingTask(false);
   };
 
+  // TODO sanitize input
   const addNewTask = (newTask) => {
-    // technically this should be a POST request to a database but I'm just using a temporary array
     if (newTask !== "") {
-      tasks.push(newTask);
+      // update the database
+      fetch("/add-task", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ task: newTask, today: type }),
+      });
+      // UI update
       setAddingTask(false);
+      update([...tasks, { id: tasks.length, task: newTask, complete: 0 }]);
+    } else {
+      console.log("Empty task");
     }
   };
 
   const deleteTask = (id) => {
-    tasks.splice(id, 1);
-    // this is a hacky way to force a re-render but it's temporary since soon I'll be moving all of this to a database
-    setTemp(!temp);
+    // update the database
+    fetch("/delete-task", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+    });
+    // update the tasks displayed
+    update(tasks.filter((task) => task.id !== id));
   };
 
   return (
@@ -50,12 +66,13 @@ function TaskGroup({ type, tasks }) {
           />
         )}
       </div>
-      {tasks.map((task, index) => (
+      {tasks.map((item) => (
         <Task
-          key={index}
-          id={index}
-          description={task}
+          key={item.id}
+          id={item.id}
+          description={item.task}
           deleteTask={deleteTask}
+          checked={item.complete}
         />
       ))}
       {AddingTask && (

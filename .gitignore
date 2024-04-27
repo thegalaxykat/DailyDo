@@ -1,3 +1,7 @@
+# Things you just don't want in your repo
+*.db
+__pycache__/
+
 # Logs
 logs
 *.log
@@ -8,6 +12,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+build
 dist
 dist-ssr
 *.local
