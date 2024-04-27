@@ -8,9 +8,11 @@ function App() {
 
   // load tasks from the db as json
   if (tasks === null) {
+    console.log("Loading tasks...");
     fetch("/get-tasks").then((resp) =>
       resp.json().then((j) => setTasks(j.tasks))
     );
+
     return <div>Loading...</div>;
   } else {
     // regular page output

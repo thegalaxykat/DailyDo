@@ -8,7 +8,7 @@ import AddTask from "./AddTask";
  * @param type - the title of the task group to be displayed
  * @param tasks - an array of tasks objects to be displayed
  */
-function TaskGroup({ type, tasks }) {
+function TaskGroup({ type, tasks, update }) {
   const [isHovered, setIsHovered] = useState(false);
   const [AddingTask, setAddingTask] = useState(false);
 
@@ -19,28 +19,34 @@ function TaskGroup({ type, tasks }) {
 
   // TODO sanitize input
   const addNewTask = (newTask) => {
-    // if (newTask !== "") {
-    //   console.log("Adding task...");
-    //   fetch("/add-task", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ task: newTask, today: type }),
-    //   });
+    if (newTask !== "") {
+      // update the database
+      fetch("/add-task", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ task: newTask, today: type }),
+      });
+      // UI update
       setAddingTask(false);
-    // }
+      update([...tasks, { id: tasks.length, task: newTask, complete: 0 }]);
+    } else {
+      console.log("Empty task");
+    }
   };
 
   const deleteTask = (id) => {
-    // console.log("Deleting task...");
-    // fetch("/delete-task", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ id: id }),
-    // });
+    // update the database
+    fetch("/delete-task", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+    });
+    // update the tasks displayed
+    update(tasks.filter((task) => task.id !== id));
   };
 
   return (
