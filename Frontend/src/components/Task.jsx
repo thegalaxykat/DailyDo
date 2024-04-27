@@ -8,6 +8,8 @@ function Task({ description, deleteTask, id }) {
   // using this instead of just OnClick for the checkbox so that you can click the label too
   const handleClick = () => {
     setIsChecked(!isChecked);
+    // update the task in the database
+    // TODO
   };
 
   return (

@@ -6,7 +6,7 @@ import AddTask from "./AddTask";
  * TaskGroup component that displays a group of tasks
  *
  * @param title - the title of the task group to be displayed
- * @param tasks - an array of tasks to be displayed
+ * @param tasks - an array of tasks objects to be displayed
  */
 function TaskGroup({ type, tasks }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -50,11 +50,11 @@ function TaskGroup({ type, tasks }) {
           />
         )}
       </div>
-      {tasks.map((task, index) => (
+      {tasks.map((item) => (
         <Task
-          key={index}
-          id={index}
-          description={task}
+          key={item.id}
+          id={item.id}
+          description={item.task}
           deleteTask={deleteTask}
         />
       ))}

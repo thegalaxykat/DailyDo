@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TaskGroup from "./TaskGroup";
 
-function PlanDay() {
-  const [willTasks, setWillTasks] = useState([
-    "Start this project",
-    "Write more example tasks",
-  ]);
-  const [mightTasks, setMightTasks] = useState([
-    "Eat an apple",
-    "Watch Star Wars",
-    "Name a fish Bert",
-  ]);
+function PlanDay( {tasks}) {
+  // filter tasks into will and might
+  const [willTasks, setWillTasks] = useState([]);
+  const [mightTasks, setMightTasks] = useState([]);
+
+  // update when tasks changes
+  useEffect(() => {
+    setWillTasks(tasks.filter(task => task.today === 'I Will'));
+    setMightTasks(tasks.filter(task => task.today === 'I Might'));
+  }, [tasks]);
 
   const date = new Date();
   const options = { weekday: "long", month: "long", day: "numeric" };
