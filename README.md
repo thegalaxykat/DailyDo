@@ -1,5 +1,13 @@
 # DailyDo
+
 ![Icon](/public/icons8-daily-30.png)
+
+
+
+To build and run, `cd` into the top-level repository directory and run ```./build_and_run```. This will build the React frontend and start the Flask server for you.
+
+
+
 
 
 Built from scratch using React and [Vite](https://vitejs.dev).  
