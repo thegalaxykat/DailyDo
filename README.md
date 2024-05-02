@@ -3,15 +3,16 @@
 A daily planner that helps you take things one day at a tine while organizing
 everything on your plate.
 
-<div align="center">
-    <img src="Demos/sploosh.gif" width="400">
-</div>
-
 The most challenging aspect of this project was figuring out how to structure
 the react components and database to scale with future features and updates. I
 could see how I could take an entire class on database design. I have a feeling
 I'm going to go back to do some refactoring anyway now that I've learned the
-basics.
+basics.  
+
+<div align="center">
+    <br>
+    <img src="Demos/sploosh.gif" width="400">
+</div>
 
 ## Development Setup
 
